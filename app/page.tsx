@@ -8,7 +8,27 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Scale, FileText, Users, CheckCircle, Star, TrendingUp, Clock } from "lucide-react"
+import { RetroGrid } from "@/components/ui/retro-grid"
+import { ShinyButton } from "@/components/ui/shiny-button"
+import { ShimmerButton } from "@/components/ui/shimmer-button"
+import { RainbowButton } from "@/components/ui/rainbow-button"
+import { BlurFade } from "@/components/ui/blur-fade"
+import { ScrollVelocityContainer, ScrollVelocityRow } from "@/components/ui/scroll-based-velocity"
+import {
+  Scale,
+  FileText,
+  Users,
+  CheckCircle,
+  Star,
+  TrendingUp,
+  Clock,
+  Mail,
+  Phone,
+  MapPin,
+  Shield,
+  Award,
+  Zap,
+} from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
@@ -56,95 +76,123 @@ export default function Home() {
               </Button>
             </Link>
             <Link href="/auth/signup">
-              <Button className="bg-teal-600 hover:bg-teal-700 btn-ripple glow">Sign Up</Button>
+              <ShinyButton className="bg-teal-600 hover:bg-teal-700 text-white">Sign Up</ShinyButton>
             </Link>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="py-16 px-4">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <div className="bounce-in">
-            <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-100 px-4 py-2 text-sm font-medium card-glow">
-              <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2 blink-dot"></span>
+      <section className="py-16 px-4 relative overflow-hidden">
+        <RetroGrid
+          className="opacity-10 z-10"
+          lightLineColor="rgb(20 184 166)"
+          darkLineColor="rgb(20 184 166)"
+          cellSize={80}
+          angle={45}
+        />
+        <div className="max-w-4xl mx-auto text-center space-y-8 relative z-20">
+          <BlurFade delay={0.1}>
+            <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-100 px-4 py-2 text-sm font-medium">
+              <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2"></span>
               Quick, Cost-Effective, Stress-Free!
             </Badge>
-          </div>
+          </BlurFade>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-teal-600 leading-tight hero-fade-in">
-            Need a Lawyer's Voice Without the Legal Bill?
-          </h1>
+          <BlurFade delay={0.2}>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900">
+              Need a Lawyer's Voice Without the Legal Bill?
+            </h1>
+          </BlurFade>
 
-          <p
-            className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed text-reveal"
-            style={{ animationDelay: "0.2s" }}
-          >
-            Get local attorneys to send your legal letter in 48 hours for $199.
-          </p>
+          <BlurFade delay={0.3}>
+            <p className="text-xl max-w-3xl mx-auto leading-relaxed text-teal-600 font-medium">
+              Get local attorneys to send your legal letter in 48 hours for $199.
+            </p>
+          </BlurFade>
 
-          <p
-            className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed text-slide-up"
-            style={{ animationDelay: "0.4s" }}
-          >
-            Get professional lawyer-drafted letters for tenant disputes, debt collection, HR issues, and more. Resolve
-            conflicts quickly and affordably with the power of legal communication.
-          </p>
+          <BlurFade delay={0.4}>
+            <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
+              Get professional lawyer-drafted letters for tenant disputes, debt collection, HR issues, and more. Resolve
+              conflicts quickly and affordably with the power of legal communication.
+            </p>
+          </BlurFade>
 
-          <div
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center hero-slide-up"
-            style={{ animationDelay: "0.6s" }}
-          >
-            <Link href="/auth/signup">
+          <BlurFade delay={0.5}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link href="/auth/signup">
+                <ShimmerButton
+                  className="px-8 py-4 text-lg font-medium"
+                  background="linear-gradient(135deg, rgb(20 184 166), rgb(6 182 212))"
+                  shimmerColor="#ffffff"
+                >
+                  ⚡ Get Started Now →
+                </ShimmerButton>
+              </Link>
               <Button
+                variant="outline"
                 size="lg"
-                className="bg-teal-600 hover:bg-teal-700 px-8 py-4 text-lg font-medium btn-magnetic shimmer"
+                className="px-8 py-4 text-lg border-teal-200 text-teal-700 hover:bg-teal-50 bg-transparent btn-ripple"
+                onClick={scrollToLetterTypes}
               >
-                ⚡ Get Started Now →
+                📄 View Letter Types
               </Button>
-            </Link>
-            <Button
-              variant="outline"
-              size="lg"
-              className="px-8 py-4 text-lg border-teal-200 text-teal-700 hover:bg-teal-50 bg-transparent btn-ripple"
-              onClick={scrollToLetterTypes}
-            >
-              📄 View Letter Types
-            </Button>
-          </div>
+            </div>
+          </BlurFade>
 
           {/* Key Benefits */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
-            {[
-              { icon: CheckCircle, text: "No Fees" },
-              { icon: CheckCircle, text: "24-48 Hour Delivery" },
-              { icon: CheckCircle, text: "Lawyer Reviewed" },
-            ].map((benefit, index) => (
-              <div key={benefit.text} className={`flex items-center gap-2 text-green-600 grid-item-${index + 1}`}>
-                <benefit.icon className="h-5 w-5" />
-                <span className="font-medium">{benefit.text}</span>
-              </div>
-            ))}
-          </div>
+          <BlurFade delay={0.6}>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
+              {[
+                { icon: CheckCircle, text: "No Fees" },
+                { icon: CheckCircle, text: "24-48 Hour Delivery" },
+                { icon: CheckCircle, text: "Lawyer Reviewed" },
+              ].map((benefit, index) => (
+                <div key={benefit.text} className="flex items-center gap-2 text-green-600">
+                  <benefit.icon className="h-5 w-5" />
+                  <span className="font-medium">{benefit.text}</span>
+                </div>
+              ))}
+            </div>
+          </BlurFade>
         </div>
       </section>
 
       {/* Statistics Section */}
-      <section className="py-16 bg-teal-900 text-white feature-reveal">
+      <section className="py-16 bg-teal-900 text-white feature-reveal relative overflow-hidden">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mb-8">
             {[
               { number: "10,000+", label: "Letters Delivered" },
               { number: "95%", label: "Success Rate" },
               { number: "50+", label: "Licensed Attorneys" },
               { number: "24", label: "Hours Average Delivery" },
             ].map((stat, index) => (
-              <div key={stat.label} className={`stat-bounce grid-item-${index + 1}`}>
-                <div className="text-4xl font-bold text-teal-300 mb-2 stat-counter">{stat.number}</div>
-                <div className="text-teal-100">{stat.label}</div>
-              </div>
+              <BlurFade key={stat.label} delay={0.1 * index}>
+                <div className="stat-bounce">
+                  <div className="text-4xl font-bold text-teal-300 mb-2 stat-counter">{stat.number}</div>
+                  <div className="text-teal-100">{stat.label}</div>
+                </div>
+              </BlurFade>
             ))}
           </div>
+
+          <ScrollVelocityContainer>
+            <ScrollVelocityRow baseVelocity={20} className="py-4 text-teal-100">
+              {[
+                "⭐ Resolved my tenant dispute in 3 days! - Sarah M.",
+                "⭐ Got my security deposit back thanks to their letter - John D.",
+                "⭐ Professional service, fast delivery - Maria L.",
+                "⭐ Saved me thousands in legal fees - Robert K.",
+                "⭐ Excellent communication throughout - Lisa P.",
+                "⭐ Highly recommend for any legal letters - David W.",
+              ].map((testimonial, index) => (
+                <span key={index} className="mx-8 whitespace-nowrap">
+                  {testimonial}
+                </span>
+              ))}
+            </ScrollVelocityRow>
+          </ScrollVelocityContainer>
         </div>
       </section>
 
@@ -202,12 +250,12 @@ export default function Home() {
                 <h3 className="text-xl font-semibold mb-2">{card.title}</h3>
                 <p className="text-gray-600 mb-4">{card.description}</p>
                 <div className="text-2xl font-bold text-teal-600 mb-2 metric-pop">Starting at {card.price}</div>
-                <Button
-                  className="w-full bg-teal-600 hover:bg-teal-700 btn-magnetic"
+                <ShinyButton
+                  className="w-full bg-teal-600 hover:bg-teal-700 text-white"
                   onClick={() => handleSelectLetterType(card.type)}
                 >
                   Select This Type →
-                </Button>
+                </ShinyButton>
               </CardContent>
             </Card>
           ))}
@@ -371,12 +419,9 @@ export default function Home() {
                   />
                 </div>
 
-                <Button
-                  type="submit"
-                  className="w-full bg-teal-600 hover:bg-teal-700 py-3 text-lg font-medium btn-magnetic shimmer grid-item-5"
-                >
+                <RainbowButton type="submit" variant="outline" className="w-full py-3 text-lg font-medium grid-item-5">
                   📄 Continue to Sign Up →
-                </Button>
+                </RainbowButton>
 
                 <p className="text-center text-sm text-gray-600 grid-item-6">
                   Already have an account?{" "}
@@ -393,10 +438,14 @@ export default function Home() {
       {/* Success Stories Section */}
       <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto text-center feature-slide-left">
-          <h2 className="text-3xl font-bold text-teal-600 mb-4 text-reveal">Celebrating Success</h2>
-          <p className="text-gray-600 mb-12 text-slide-up">
-            Serving Thousands of clients since 2018! This is a straightforward choice. Here's why:
-          </p>
+          <BlurFade delay={0.1}>
+            <h2 className="text-3xl font-bold text-teal-600 mb-4 text-reveal">Celebrating Success</h2>
+          </BlurFade>
+          <BlurFade delay={0.2}>
+            <p className="text-gray-600 mb-12 text-slide-up">
+              Serving Thousands of clients since 2018! This is a straightforward choice. Here's why:
+            </p>
+          </BlurFade>
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {[
@@ -417,22 +466,19 @@ export default function Home() {
                 description: "Real results from satisfied clients across the country.",
               },
             ].map((item, index) => (
-              <Card
-                key={item.title}
-                className={`text-center ${
-                  index === 0 ? "card-tilt" : index === 1 ? "card-glow" : "card-lift"
-                } grid-item-${index + 1}`}
-              >
-                <CardContent className="p-6">
-                  {item.value ? (
-                    <div className="text-4xl font-bold text-blue-600 mb-2 stat-counter">{item.value}</div>
-                  ) : (
-                    <item.icon className="h-12 w-12 text-green-600 mx-auto mb-4 float" />
-                  )}
-                  <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                  <p className="text-gray-600">{item.description}</p>
-                </CardContent>
-              </Card>
+              <BlurFade key={item.title} delay={0.1 * index}>
+                <Card className="text-center card-glow">
+                  <CardContent className="p-6">
+                    {item.value ? (
+                      <div className="text-4xl font-bold text-blue-600 mb-2 stat-counter">{item.value}</div>
+                    ) : (
+                      <item.icon className="h-12 w-12 text-green-600 mx-auto mb-4 float" />
+                    )}
+                    <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                    <p className="text-gray-600">{item.description}</p>
+                  </CardContent>
+                </Card>
+              </BlurFade>
             ))}
           </div>
 
@@ -447,21 +493,191 @@ export default function Home() {
                 author: "Mike T.",
               },
             ].map((testimonial, index) => (
-              <Card key={testimonial.author} className={`max-w-2xl mx-auto card-glow grid-item-${index + 1}`}>
-                <CardContent className="p-6 text-left">
-                  <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 bg-gray-200 rounded-full flex-shrink-0 pulse-soft"></div>
-                    <div>
-                      <p className="text-gray-700 italic mb-2">"{testimonial.text}"</p>
-                      <p className="text-blue-600 font-medium">- {testimonial.author}</p>
+              <BlurFade key={testimonial.author} delay={0.1 * index}>
+                <Card className="max-w-2xl mx-auto card-glow">
+                  <CardContent className="p-6 text-left">
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 bg-gray-200 rounded-full flex-shrink-0 pulse-soft"></div>
+                      <div>
+                        <p className="text-gray-700 italic mb-2">"{testimonial.text}"</p>
+                        <p className="text-blue-600 font-medium">- {testimonial.author}</p>
+                      </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </BlurFade>
             ))}
           </div>
         </div>
       </section>
+
+      <footer className="bg-slate-900 text-white py-16">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid md:grid-cols-4 gap-8 mb-12">
+            {/* Company Info */}
+            <BlurFade delay={0.1}>
+              <div className="space-y-4">
+                <div className="flex items-center gap-2">
+                  <Scale className="h-8 w-8 text-teal-400" />
+                  <span className="text-xl font-semibold">talk-to-my-lawyer</span>
+                </div>
+                <p className="text-slate-300 text-sm leading-relaxed">
+                  Professional legal letter services connecting you with licensed attorneys nationwide. Get the legal
+                  voice you need without the expensive legal fees.
+                </p>
+                <div className="flex items-center gap-4">
+                  <Shield className="h-5 w-5 text-green-400" />
+                  <span className="text-sm text-slate-300">Licensed & Insured</span>
+                </div>
+              </div>
+            </BlurFade>
+
+            {/* Services */}
+            <BlurFade delay={0.2}>
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-teal-400">Services</h3>
+                <ul className="space-y-2 text-sm text-slate-300">
+                  <li>
+                    <Link href="/generate" className="hover:text-teal-400 transition-colors">
+                      Tenant Disputes
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/generate" className="hover:text-teal-400 transition-colors">
+                      Employment Issues
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/generate" className="hover:text-teal-400 transition-colors">
+                      Debt Collection
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/generate" className="hover:text-teal-400 transition-colors">
+                      Contract Disputes
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/generate" className="hover:text-teal-400 transition-colors">
+                      Cease & Desist
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/generate" className="hover:text-teal-400 transition-colors">
+                      Demand Letters
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </BlurFade>
+
+            {/* Company */}
+            <BlurFade delay={0.3}>
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-teal-400">Company</h3>
+                <ul className="space-y-2 text-sm text-slate-300">
+                  <li>
+                    <Link href="/about" className="hover:text-teal-400 transition-colors">
+                      About Us
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/pricing" className="hover:text-teal-400 transition-colors">
+                      Pricing
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/dashboard" className="hover:text-teal-400 transition-colors">
+                      Dashboard
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/account" className="hover:text-teal-400 transition-colors">
+                      Account
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/privacy" className="hover:text-teal-400 transition-colors">
+                      Privacy Policy
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/terms" className="hover:text-teal-400 transition-colors">
+                      Terms of Service
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </BlurFade>
+
+            {/* Contact */}
+            <BlurFade delay={0.4}>
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-teal-400">Contact</h3>
+                <div className="space-y-3 text-sm text-slate-300">
+                  <div className="flex items-center gap-3">
+                    <Mail className="h-4 w-4 text-teal-400" />
+                    <span>support@talktomylawyer.com</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Phone className="h-4 w-4 text-teal-400" />
+                    <span>1-800-LAWYER-1</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <MapPin className="h-4 w-4 text-teal-400" />
+                    <span>Available Nationwide</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Clock className="h-4 w-4 text-teal-400" />
+                    <span>24/7 Support</span>
+                  </div>
+                </div>
+              </div>
+            </BlurFade>
+          </div>
+
+          {/* Trust Indicators */}
+          <BlurFade delay={0.5}>
+            <div className="border-t border-slate-700 pt-8 mb-8">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div className="flex items-center gap-6">
+                  <div className="flex items-center gap-2">
+                    <Award className="h-5 w-5 text-yellow-400" />
+                    <span className="text-sm text-slate-300">A+ BBB Rating</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Zap className="h-5 w-5 text-blue-400" />
+                    <span className="text-sm text-slate-300">48hr Guarantee</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Shield className="h-5 w-5 text-green-400" />
+                    <span className="text-sm text-slate-300">100% Secure</span>
+                  </div>
+                </div>
+                <div className="text-sm text-slate-400">Featured in: Entrepreneur • Medium • BizPrime</div>
+              </div>
+            </div>
+          </BlurFade>
+
+          {/* Bottom Bar */}
+          <BlurFade delay={0.6}>
+            <div className="border-t border-slate-700 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+              <div className="text-sm text-slate-400">© 2024 talk-to-my-lawyer. All rights reserved.</div>
+              <div className="flex items-center gap-6 text-sm text-slate-400">
+                <Link href="/privacy" className="hover:text-teal-400 transition-colors">
+                  Privacy
+                </Link>
+                <Link href="/terms" className="hover:text-teal-400 transition-colors">
+                  Terms
+                </Link>
+                <Link href="/cookies" className="hover:text-teal-400 transition-colors">
+                  Cookies
+                </Link>
+              </div>
+            </div>
+          </BlurFade>
+        </div>
+      </footer>
     </div>
   )
 }

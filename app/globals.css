@@ -24,6 +24,8 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
+    --duration: 10s; /* Default duration for marquee */
+    --speed: 1s; /* Default speed for shimmer and spin */
   }
 
   * {
@@ -328,6 +330,103 @@
 
   .icon-spin-slow:hover {
     transform: scale(1.05);
+  }
+
+  /* MagicUI component animations and styles aligned with legal theme */
+
+  /* Marquee animations */
+  @keyframes marquee {
+    from {
+      transform: translateX(0%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0%);
+    }
+    to {
+      transform: translateY(-100%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee var(--duration) linear infinite;
+  }
+
+  .animate-marquee-vertical {
+    animation: marquee-vertical var(--duration) linear infinite;
+  }
+
+  /* RetroGrid animations with professional teal theme */
+  @keyframes grid {
+    0% {
+      transform: translateY(-50%);
+    }
+    100% {
+      transform: translateY(-50%) translateX(-100%);
+    }
+  }
+
+  .animate-grid {
+    animation: grid 15s linear infinite;
+  }
+
+  /* Rainbow button animations with legal theme colors */
+  @keyframes rainbow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-rainbow {
+    animation: rainbow 3s linear infinite;
+    --color-1: hsl(180, 100%, 50%); /* Teal */
+    --color-2: hsl(200, 100%, 50%); /* Light Blue */
+    --color-3: hsl(220, 100%, 50%); /* Blue */
+    --color-4: hsl(190, 100%, 45%); /* Cyan */
+    --color-5: hsl(210, 100%, 55%); /* Sky Blue */
+  }
+
+  /* Shimmer animations with professional timing */
+  @keyframes shimmer-slide {
+    to {
+      transform: translate(calc(100cqw - 100%), 0);
+    }
+  }
+
+  @keyframes spin-around {
+    0% {
+      transform: translateZ(0) rotate(0);
+    }
+    15%,
+    35% {
+      transform: translateZ(0) rotate(90deg);
+    }
+    65%,
+    85% {
+      transform: translateZ(0) rotate(270deg);
+    }
+    100% {
+      transform: translateZ(0) rotate(360deg);
+    }
+  }
+
+  .animate-shimmer-slide {
+    animation: shimmer-slide calc(var(--speed) * 2) ease-in-out infinite alternate;
+  }
+
+  .animate-spin-around {
+    animation: spin-around calc(var(--speed) * 2) infinite linear;
   }
 }
 
@@ -647,5 +746,67 @@
   }
   to {
     transform: rotate(0deg);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes grid {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(-50%) translateX(-100%);
+  }
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes shimmer-slide {
+  to {
+    transform: translate(calc(100cqw - 100%), 0);
+  }
+}
+
+@keyframes spin-around {
+  0% {
+    transform: translateZ(0) rotate(0);
+  }
+  15%,
+  35% {
+    transform: translateZ(0) rotate(90deg);
+  }
+  65%,
+  85% {
+    transform: translateZ(0) rotate(270deg);
+  }
+  100% {
+    transform: translateZ(0) rotate(360deg);
   }
 }
